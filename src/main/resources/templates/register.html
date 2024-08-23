@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Supply</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<section>
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header text-center fs-4">
+                        Add Supply
+                    </div>
+                    <div class="text-center" th:if="${message}" th:text="${message}"></div>
+                    <div class="card-body">
+                        <form action="/createsupply" method="post">
+                            <div class="mb-3">
+                                <label for="companyName" class="form-label">Company Name</label>
+                                <input type="text" name="company_name" class="form-control" id="companyName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="location" class="form-label">Location</label>
+                                <select name="location" class="form-control" id="location" required>
+                                    <option value="" disabled selected>Select a city</option>
+                                    <option th:each="city : ${countryNames}" th:value="${city}" th:text="${city}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="manufacturingProcesses" class="form-label">Manufacturing Processes</label>
+                                <select name="manufacturing_processes" class="form-control" id="manufacturingProcesses" required>
+                                    <option value="" disabled selected>Select a process</option>
+                                    <option th:each="process : ${manufacturingProcessesOptions}" th:value="${process}" th:text="${process}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="natureOfBusiness" class="form-label">Nature of Business</label>
+                                <select name="nature_of_business" class="form-control" id="natureOfBusiness" required>
+                                    <option value="" disabled selected>Select a type</option>
+                                    <option th:each="business : ${natureOfBusinessOptions}" th:value="${business}" th:text="${business}"></option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="website" class="form-label">Website</label>
+                                <input type="text" name="website" class="form-control" id="website" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
